@@ -18,6 +18,7 @@
 # ignore all files starting with . or ~
 .*
 ~*
+!.keep
 
 # ignore node dependency directories (used by grunt)
 node_modules/
