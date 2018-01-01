@@ -18,10 +18,12 @@ services:
       - wp_dev_db
     image: wordpress:php7.2-apache
     volumes:
-      - .:/var/www/html
+      - ./wordpress:/var/www/html
     ports:
       - "8282:80"
     environment:
+      WORDPRESS_DB_HOST: wp_dev_db:3306
+      WORDPRESS_DB_NAME: wordpress
       WORDPRESS_DB_USER: wordpress
       WORDPRESS_DB_PASSWORD: wordpress
 volumes:
