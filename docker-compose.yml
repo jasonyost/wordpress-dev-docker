@@ -1,0 +1,28 @@
+# WordPress local development environment
+# WARNING: DO NOT USE IN PRODUCTION WITHOUT MODIFICATION!
+
+version: "2"
+
+services:
+  wp_dev_db:
+    image: mysql
+    volumes:
+      - wp_dev_db_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: WORDPRESS_DEV_MYSQL_00
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+  wp_dev_wordpress:
+    depends_on:
+      - wp_dev_db
+    image: wordpress:php7.2-apache
+    volumes:
+      - .:/var/www/html
+    ports:
+      - "8282:80"
+    environment:
+      WORDPRESS_DB_HOST: wp_dev_db:3306
+      WORDPRESS_DB_PASSWORD: wordpress
+volumes:
+  wp_dev_db_data:
