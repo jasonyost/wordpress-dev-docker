@@ -4,27 +4,33 @@
 version: "2"
 
 services:
-  wp_dev_db:
+  db:
     image: mysql
     volumes:
-      - wp_dev_db_data:/var/lib/mysql
+      - db_data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: WORDPRESS_DEV_MYSQL_00
       MYSQL_DATABASE: wordpress
       MYSQL_USER: wordpress
       MYSQL_PASSWORD: wordpress
-  wp_dev_wordpress:
+  wordpress:
     depends_on:
-      - wp_dev_db
+      - db
     image: wordpress:php7.2-apache
     volumes:
       - ./wordpress:/var/www/html
     ports:
       - "8282:80"
     environment:
-      WORDPRESS_DB_HOST: wp_dev_db:3306
+      WORDPRESS_DB_HOST: db:3306
       WORDPRESS_DB_NAME: wordpress
       WORDPRESS_DB_USER: wordpress
       WORDPRESS_DB_PASSWORD: wordpress
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    ports:
+      - "8383:80"
+    depends_on:
+      - db
 volumes:
-  wp_dev_db_data:
+  db_data:
