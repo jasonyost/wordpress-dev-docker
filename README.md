@@ -1,6 +1,6 @@
 # WordPress Development Docker Environment
 
-This project serves as a simple local WordPress development environment. It depends on [Docker](https://www.docker.com/) and [Docker Compose](https://docs.docker.com/compose/install)
+This project serves as a simple local [WordPress](https://wordpress.org/) development environment. It depends on [Docker](https://www.docker.com/) and [Docker Compose](https://docs.docker.com/compose/install)
 
 ## Setup
 
@@ -13,15 +13,15 @@ The development environment can be started with the command:
 
 `docker-compose up -d`
 
-Which will start the development environment in the background. The first the the environment starts, it will download all the necessary images and files and may take a few minutes to complete. Subsequent starts will be faster.
+Which will start the development environment in the background. The first time the environment starts, it will download all necessary images and files, which may take a few minutes to complete. Subsequent starts will be faster.
 
-Once the environment is running the development WordPress instance can be accessed in your browser at `http://localhost:8282/`.
+Once the environment is running, the WordPress instance can be accessed via browser at `http://localhost:8282/`.
 
 The first time you access the development URL you will be presented with the WordPress installation screen, which should be filled out as any other standard WordPress installation.
 
 Data is persisted between restarts of the environment.
 
-The environment also includes the latest [phpMyAdmin](https://www.phpmyadmin.net/) which can be accessed at `http://localhost:8383/`
+The environment also includes the latest [phpMyAdmin](https://www.phpmyadmin.net/) which can be accessed at `http://localhost:8383/`, with both the username and password of `wordpress`
 
 The environment can be stopped using the following command:
 
@@ -34,7 +34,8 @@ The `wordpress` directory will contain all of the files for the full WordPress i
 You will need to edit the last few lines of the file to ensure that your theme and/or plugin is committed to your git repository.
 
 Examples:  
-`!/wordpress/wp-content/themes/your-theme-name/`
+`!/wordpress/wp-content/themes/your-theme-name/`  
+or  
 `!/wordpress/wp-content/plugins/your-plugin-name/`
 
 ### Remotes
